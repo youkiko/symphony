@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Utilisateurs
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('CSS/style.css') }}">
+	<link rel="stylesheet" href="{{ asset('CSS/card.css') }}">
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('JS/card.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-center my-4">Liste des Utilisateurs</h1>
+		<div class="row">
+			{% for user in users %}
+				<div class="col-md-4 mb-4">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">
+								{{ user.prenom|capitalize }}
+								{{ user.nom|upper }}
+							</h5>
+							<p class="card-text">
+								{% if user.age < 30 %}
+									<span class="badge bg-success">Junior</span>
+								{% else %}
+									<span class="badge bg-primary">Senior</span>
+								{% endif %}
+							</p>
+							<ul class="list-unstyled">
+								<li>Âge :
+									{{ user.age }}
+									ans</li>
+								<li>Profession :
+									{{ user.profession }}</li>
+								<li>Status :
+									{{ user.status }}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
